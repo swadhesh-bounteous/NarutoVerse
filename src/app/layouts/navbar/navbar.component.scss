@@ -1,0 +1,35 @@
+.nav-container{
+    padding: 10px 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top:0;
+    z-index: 1000;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-container{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;   
+}
+.list-container li{
+    list-style: none;
+}
+
+.list-container li a{
+    color: #F7A11B;
+    text-decoration: none;
+    font-size: small;
+    font-weight: 600;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.list-container li a:hover{
+    color: white;
+    transition: 0.3s ease-in-out;
+}

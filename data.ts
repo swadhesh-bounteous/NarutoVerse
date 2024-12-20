@@ -11,3 +11,4 @@ const slides: Slide[] = [
 ];
 
 export default slides;
+

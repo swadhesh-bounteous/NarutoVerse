@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { NavbarComponent } from '../../layouts/navbar/navbar.component';
 import { HomeContentComponent } from '../../components/home-content/home-content.component';
+import { FooterComponent } from '../../layouts/footer/footer.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent, 
-    NavbarComponent,
-    HomeContentComponent
+    HomeContentComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

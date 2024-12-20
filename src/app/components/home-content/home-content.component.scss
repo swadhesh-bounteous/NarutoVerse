@@ -1,7 +1,7 @@
 .content-container{
     background-color: beige;
     color: rgb(51, 41, 28); 
-    padding: 20px;
+    padding: 0px 30px;
 }
 
 .pad-bottom-container {
@@ -13,6 +13,35 @@
   }
   
 .info-section{
-    padding: 10px 0;
-    border-bottom: 1px solid black;
+    padding: 15px 0;
+}
+
+.divider{
+    display: flex;
+    justify-content: center;
+}
+
+.content-head{
+    text-align: center;
+}
+
+.text-content{
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+    word-spacing: 0.16em;
+    font-size: large;
+    padding: 40px;
+    text-indent: 10em;
+}
+
+.image-right-text{
+    display: flex;
+    align-items: center;
+    padding-right: 40px;
+}
+
+.image-left-text{
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
 }

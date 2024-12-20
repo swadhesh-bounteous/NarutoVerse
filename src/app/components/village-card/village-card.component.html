@@ -1,1 +1,22 @@
-<p>village-card works!</p>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="village-name">
+        {{ village.name }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    @if(village.characters.length > 0){
+        @for (character of village.characters; track $index) {
+            <div class="character-name">
+              <p>{{ character.name }}</p>
+              <button class="btn-view">View Character details</button>
+            </div>
+        }
+    }
+    @else {
+        <p>No characters found in this village.</p>
+    }
+    
+  </mat-expansion-panel>
+</mat-accordion>

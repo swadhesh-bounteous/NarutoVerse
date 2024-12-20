@@ -1,35 +1,39 @@
-.nav-container{
+.nav-container {
     padding: 10px 40px;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
     position: fixed;
-    top:0;
+    top: 0;
     z-index: 1000;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.list-container{
+    background-color: var(--navbar-scroll, transparent);
+    color: var(--navbar-scroll-text, white);
+    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: var(--navbar-scroll-shadow, none);
+  }
+  
+  .list-container {
     width: 50%;
     display: flex;
-    justify-content: space-between;   
-}
-.list-container li{
+    justify-content: space-between;
+  }
+  
+  .list-container li {
     list-style: none;
-}
-
-.list-container li a{
-    color: #F7A11B;
+  }
+  
+  .list-container li a {
+    color: #f7a11b;
     text-decoration: none;
     font-size: small;
     font-weight: 600;
     line-height: 1.5;
     text-transform: uppercase;
-}
-
-.list-container li a:hover{
+  }
+  
+  .list-container li a:hover {
     color: white;
     transition: 0.3s ease-in-out;
-}
+  }
+  

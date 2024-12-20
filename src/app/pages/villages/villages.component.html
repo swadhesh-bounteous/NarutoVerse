@@ -1,1 +1,25 @@
-<p>villages works!</p>
+<section>
+  <div class="divider" style="margin-top: 120px">
+    <img src="assets/images/divider.png" width="30%" height="20px" />
+  </div>
+  <h1 class="content-head">VILLAGES</h1>
+  <div class="divider">
+    <img src="assets/images/divider.png" width="30%" height="20px" />
+  </div>
+  <div class="map-container">
+    <img src="assets/images/villages_map.jpg" width="50%" height="auto" />
+  </div>
+  
+  <section class="acc-section">
+    <div *ngIf="isLoading">Loading...</div>
+    @if(villages.length > 0){
+        @for (village of villages; track $index) {
+            <app-village-card [village]="village"></app-village-card>            
+        }               
+    }
+    @else{
+        <p>No villages found.</p>
+    }
+  </section>
+</section>
+

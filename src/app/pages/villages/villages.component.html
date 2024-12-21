@@ -1,25 +1,62 @@
+<div class="pad-bottom-container">
+    <img
+      src="assets/images/img_comics.webp"
+      width="245px"
+      height="222px"
+      style="margin-top: 30px;"
+      alt="Hero Image"
+    />
+  </div>
 <section>
-  <div class="divider" style="margin-top: 120px">
-    <img src="assets/images/divider.png" width="30%" height="20px" />
+  <div class="divider">
+    <img src="assets/images/divider.png" width="30%" height="20px" alt="" />
   </div>
   <h1 class="content-head">VILLAGES</h1>
   <div class="divider">
-    <img src="assets/images/divider.png" width="30%" height="20px" />
+    <img src="assets/images/divider.png" width="30%" height="20px" alt="" />
   </div>
   <div class="map-container">
-    <img src="assets/images/villages_map.jpg" width="50%" height="auto" />
+    <div class="text-content">
+      In the world of Naruto, the shinobi nations are powerful, militarized
+      regions led by their respective villages. The Five Great Shinobi Nations
+      are the most influential: The Land of Fire is home to Konohagakure (Hidden
+      Leaf Village), where the series' protagonist, Naruto Uzumaki, hails from,
+      and is known for its strong community and its Hokage, who leads both
+      politically and militarily. The Land of Wind houses Sunagakure (Hidden
+      Sand Village), known for its harsh desert environment and the Kazekage,
+      its leader, who commands great respect. The Land of Water holds Kirigakure
+      (Hidden Mist Village), infamous for its brutal past and dangerous tactics,
+      ruled by the Mizukage. The Land of Earth contains Iwagakure (Hidden Stone
+      Village), led by the Tsuchikage, which is known for its strong military
+      and defensive strategies, and The Land of Lightning hosts Kumogakure
+      (Hidden Cloud Village), led by the Raikage, which is known for its
+      powerful ninjas and advanced jutsu.<br /><br />
+      Each village plays a critical role in the political and military balance
+      of the shinobi world, often forming alliances, participating in conflicts,
+      or engaging in covert operations. The leaders of these villages, the Kage,
+      are some of the most powerful individuals in the series, guiding their
+      villages through peace and war. The villages' ninjas, called shinobi, are
+      responsible for missions ranging from protecting villages to participating
+      in large-scale wars, and their loyalty lies primarily with their village
+      and its leader. These nations and villages form the intricate backdrop of
+      the Naruto series, where alliances, rivalries, and politics shape the
+      destiny of its characters.
+    </div>
+    <img src="assets/images/villages_map.jpg" width="600" height="600" alt="" />
   </div>
-  
+  <div class="divider" style="margin-top: 60px">
+    <img src="assets/images/divider.png" width="50%" height="20px" alt="" />
+  </div>
+  <h1 class="content-head">ALL VILLAGES WITH THEIR CHARACTERS</h1>
+  <div class="divider" style="margin-bottom: 20px;">
+    <img src="assets/images/divider.png" width="50%" height="20px" alt="" />
+  </div>
   <section class="acc-section">
     <div *ngIf="isLoading">Loading...</div>
-    @if(villages.length > 0){
-        @for (village of villages; track $index) {
-            <app-village-card [village]="village"></app-village-card>            
-        }               
-    }
-    @else{
-        <p>No villages found.</p>
+    @if(villages.length > 0){ @for (village of villages; track $index) {
+    <app-village-card [village]="village"></app-village-card>
+    } } @else{
+    <p>No villages found.</p>
     }
   </section>
 </section>
-

@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,8 +9,8 @@ import { HeroCarouselComponent } from './components/hero-carousel/hero-carousel.
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { CommonModule } from '@angular/common';
+import { FilterVillagesPipe } from './pipes/filter-villages.pipe';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,9 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
     TailedBeastCardComponent,
     HeroCarouselComponent,
     NavbarComponent,
+    FilterVillagesPipe,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, CommonModule],
   providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })

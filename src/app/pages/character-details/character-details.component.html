@@ -1,0 +1,75 @@
+<div *ngIf="loading" class="loading">Loading...</div>
+
+<div *ngIf="error" class="error">
+  <p>{{ error }}</p>
+</div>
+
+@if(!loading && !error){
+<div>
+  <h2>{{ character.name }}</h2>
+  <div class="character-info">
+    <p><strong>ID:</strong> {{ character.id }}</p>
+    <p><strong>Name:</strong> {{ character.name }}</p>
+
+    @if(character.images.length > 0){
+      @for (img of character.images; track $index) {
+        <div>
+            <img [src]="img" alt="{{ character.name }}" width="100" />
+        </div>
+      }
+      
+    } @else {
+      <p>No Image found for this character</p>
+    }
+
+    @if(character.debut){
+        <div>
+        <h3>Debut</h3>
+        <ul>
+            <li *ngIf="character.debut.manga"><strong>Manga:</strong> {{ character.debut.manga }}</li>
+            <li *ngIf="character.debut.anime"><strong>Anime:</strong> {{ character.debut.anime }}</li>
+            <li *ngIf="character.debut.game"><strong>Game:</strong> {{ character.debut.game }}</li>
+            <li *ngIf="character.debut.ova"><strong>OVA:</strong> {{ character.debut.ova }}</li>
+            <li *ngIf="character.debut.appearsIn"><strong>Appears In:</strong> {{ character.debut.appearsIn }}</li>
+        </ul>
+        </div>
+    }
+    
+
+    <div *ngIf="character.jutsu?.length">
+      <h3>Jutsu</h3>
+      <ul>
+        <li *ngFor="let jutsu of character.jutsu">{{ jutsu }}</li>
+      </ul>
+    </div>
+
+    <div *ngIf="character.personal">
+      <h3>Personal</h3>
+      <ul>
+        <li *ngIf="character.personal.sex"><strong>Sex:</strong> {{ character.personal.sex }}</li>
+        <li *ngIf="character.personal.status"><strong>Status:</strong> {{ character.personal.status }}</li>
+        
+        <li *ngIf="character.personal.affiliation"><strong>Affiliation:</strong> {{ character.personal.affiliation }}</li>
+        <li *ngIf="character.personal.team"><strong>Team:</strong> {{ character.personal.team }}</li>
+        <li *ngIf="character.personal.titles?.length"><strong>Titles:</strong> 
+          <ul>
+            <li *ngFor="let title of character.personal.titles">{{ title }}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="character.voiceActors">
+      <h3>Voice Actors</h3>
+      <ul>
+        <li *ngIf="character.voiceActors.japanese"><strong>Japanese:</strong> {{ character.voiceActors.japanese }}</li>
+        <li *ngIf="character.voiceActors.english?.length"><strong>English:</strong> 
+          <ul>
+            <li *ngFor="let actor of character.voiceActors.english">{{ actor }}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+}

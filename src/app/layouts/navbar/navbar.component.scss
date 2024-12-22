@@ -31,9 +31,11 @@
     line-height: 1.5;
     text-transform: uppercase;
   }
-  
-  .list-container li a:hover {
-    color: white;
-    transition: 0.3s ease-in-out;
+
+  .nav-container a.active {
+    color: white !important;
+    text-decoration: underline !important;
   }
+  
+
   

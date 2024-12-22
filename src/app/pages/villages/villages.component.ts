@@ -11,8 +11,9 @@ import { Village } from '../../models/village_types';
 export class VillagesComponent implements OnInit {
   villages: Village[] = [];
   villagesService = inject(VillagesService);
+  filterText: string = '';
   isLoading: boolean = true;
-  
+
   constructor() {}
 
   ngOnInit(): void {

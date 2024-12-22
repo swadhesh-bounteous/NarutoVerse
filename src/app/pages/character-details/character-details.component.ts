@@ -32,6 +32,7 @@ export class CharacterDetailsComponent implements OnInit {
     this.characterDetailsService.getCharacterDetails(id).subscribe({
       next: (data) => {
         this.character = data;
+        console.log(this.character);
         this.loading = false;
       },
       error: (err) => {

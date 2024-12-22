@@ -1,1 +1,12 @@
-<p>character-card works!</p>
+@if(character && character.images.length > 0) {
+<div class="character-card">
+  <h3>{{ character.name }}</h3>
+  <img [src]="character.images[0]" alt="{{ character.name }}" />
+</div>
+}
+@else {
+    <div class="character-card">
+        <h3>{{ character.name }}</h3>
+        <img src="assets/images/placeholder_img.png" alt="{{ character.name }}" />
+      </div>
+}

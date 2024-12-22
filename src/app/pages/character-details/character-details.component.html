@@ -4,72 +4,200 @@
   <p>{{ error }}</p>
 </div>
 
-@if(!loading && !error){
-<div>
-  <h2>{{ character.name }}</h2>
+<div *ngIf="!loading && !error" class="container">
+  <div class="divider">
+    <img src="assets/images/divider.png" width="100%" height="20px" />
+  </div>
+  <h1>{{ character.name }}</h1>
+  <div class="divider">
+    <img src="assets/images/divider.png" width="100%" height="20px" />
+  </div>
+
   <div class="character-info">
     <p><strong>ID:</strong> {{ character.id }}</p>
     <p><strong>Name:</strong> {{ character.name }}</p>
 
-    @if(character.images.length > 0){
-      @for (img of character.images; track $index) {
-        <div>
-            <img [src]="img" alt="{{ character.name }}" width="100" />
+    <!-- Images -->
+    <div>
+      <h3>Images</h3>
+      <div *ngIf="character.images.length > 0; else noImages">
+        <div *ngFor="let img of character?.images; let i = index">
+          <img [src]="img" [alt]="character.name" width="200" />
         </div>
-      }
-      
-    } @else {
-      <p>No Image found for this character</p>
-    }
+      </div>
+      <ng-template #noImages>
+        <p>No images found for this character.</p>
+      </ng-template>
+    </div>
 
-    @if(character.debut){
-        <div>
-        <h3>Debut</h3>
-        <ul>
-            <li *ngIf="character.debut.manga"><strong>Manga:</strong> {{ character.debut.manga }}</li>
-            <li *ngIf="character.debut.anime"><strong>Anime:</strong> {{ character.debut.anime }}</li>
-            <li *ngIf="character.debut.game"><strong>Game:</strong> {{ character.debut.game }}</li>
-            <li *ngIf="character.debut.ova"><strong>OVA:</strong> {{ character.debut.ova }}</li>
-            <li *ngIf="character.debut.appearsIn"><strong>Appears In:</strong> {{ character.debut.appearsIn }}</li>
-        </ul>
-        </div>
-    }
-    
+    <!-- Debut -->
+    <div *ngIf="character?.debut">
+      <h3>Debut</h3>
+      <ul>
+        <li *ngIf="character?.debut?.manga">
+          <strong>Manga:</strong> {{ character.debut?.manga }}
+        </li>
+        <li *ngIf="character?.debut?.anime">
+          <strong>Anime:</strong> {{ character.debut?.anime }}
+        </li>
+        <li *ngIf="character?.debut?.novel">
+          <strong>Novel:</strong> {{ character.debut?.novel }}
+        </li>
+        <li *ngIf="character?.debut?.movie">
+          <strong>Movie:</strong> {{ character.debut?.movie }}
+        </li>
+        <li *ngIf="character?.debut?.game">
+          <strong>Game:</strong> {{ character.debut?.game }}
+        </li>
+        <li *ngIf="character?.debut?.ova">
+          <strong>OVA:</strong> {{ character.debut?.ova }}
+        </li>
+        <li *ngIf="character?.debut?.appearsIn">
+          <strong>Appears In:</strong> {{ character.debut?.appearsIn }}
+        </li>
+      </ul>
+    </div>
 
-    <div *ngIf="character.jutsu?.length">
+    <!-- Family -->
+    <div *ngIf="character?.family">
+      <h3>Family</h3>
+      <ul>
+        <li *ngFor="let member of character.family | keyvalue">
+          <strong>{{ member.key | titlecase }}:</strong> {{ member.value }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Jutsu -->
+    <div *ngIf="character?.jutsu?.length">
       <h3>Jutsu</h3>
       <ul>
-        <li *ngFor="let jutsu of character.jutsu">{{ jutsu }}</li>
+        <li *ngFor="let jutsu of character?.jutsu">{{ jutsu }}</li>
       </ul>
     </div>
 
-    <div *ngIf="character.personal">
+    <!-- Nature Types -->
+    <div *ngIf="character?.natureType?.length">
+      <h3>Nature Types</h3>
+      <ul>
+        <li *ngFor="let type of character?.natureType">{{ type }}</li>
+      </ul>
+    </div>
+
+    <!-- Personal Details -->
+    <div *ngIf="character?.personal">
       <h3>Personal</h3>
       <ul>
-        <li *ngIf="character.personal.sex"><strong>Sex:</strong> {{ character.personal.sex }}</li>
-        <li *ngIf="character.personal.status"><strong>Status:</strong> {{ character.personal.status }}</li>
-        
-        <li *ngIf="character.personal.affiliation"><strong>Affiliation:</strong> {{ character.personal.affiliation }}</li>
-        <li *ngIf="character.personal.team"><strong>Team:</strong> {{ character.personal.team }}</li>
-        <li *ngIf="character.personal.titles?.length"><strong>Titles:</strong> 
-          <ul>
-            <li *ngFor="let title of character.personal.titles">{{ title }}</li>
-          </ul>
+        <li *ngIf="character?.personal?.birthdate">
+          <strong>Birthdate:</strong> {{ character.personal?.birthdate }}
+        </li>
+        <li *ngIf="character?.personal?.sex">
+          <strong>Sex:</strong> {{ character.personal?.sex }}
+        </li>
+        <li *ngIf="character?.personal?.status">
+          <strong>Status:</strong> {{ character.personal?.status }}
+        </li>
+        <li *ngIf="character?.personal?.bloodType">
+          <strong>Blood Type:</strong> {{ character.personal?.bloodType }}
+        </li>
+        <li *ngIf="character?.personal?.kekkeiGenkai?.length">
+          <strong>Kekkei Genkai:</strong>
+          <span *ngIf="typeof character?.personal?.kekkeiGenkai== 'string'">
+            {{ character.personal?.kekkeiGenkai }}
+          </span>
+          <ol>
+            <li *ngFor="let kg of character?.personal?.kekkeiGenkai">
+              {{ kg }}
+            </li>
+          </ol>
+        </li>
+        <li *ngIf="character?.personal?.occupation?.length">
+          <strong>Occupation:</strong>
+          <span *ngIf="typeof character?.personal?.occupation== 'string'">
+            {{ character.personal?.occupation }}
+          </span>
+          <ol>
+            <li *ngFor="let occ of character?.personal?.occupation">
+              {{ occ }}
+            </li>
+          </ol>
+        </li>
+        <li *ngIf="character?.personal?.affiliation?.length">
+          <strong>Affiliation:</strong>
+          <span *ngIf="typeof character?.personal?.affiliation=== 'string'">
+            {{ character.personal?.affiliation }}
+          </span>
+          <ol>
+            <li *ngFor="let aff of character?.personal?.affiliation">
+              {{ aff }}
+            </li>
+          </ol>
+        </li>
+        <li *ngIf="character?.personal?.team?.length">
+          <strong>Team:</strong>
+          <span *ngIf="typeof character?.personal?.team === 'string'">
+            {{ character.personal?.team }}
+          </span>
+          <ol>
+            <li *ngFor="let team of character?.personal?.team">{{ team }}</li>
+          </ol>
+        </li>
+        <li *ngIf="character?.personal?.clan">
+          <strong>Clan:</strong> {{ character.personal?.clan }}
+        </li>
+        <li *ngIf="character?.personal?.titles?.length">
+          <strong>Titles:</strong>
+          <ol>
+            <li *ngFor="let title of character?.personal?.titles">
+              {{ title }}
+            </li>
+          </ol>
         </li>
       </ul>
     </div>
 
-    <div *ngIf="character.voiceActors">
-      <h3>Voice Actors</h3>
+    <!-- Tools -->
+    <div *ngIf="character?.tools?.length">
+      <h3>Tools</h3>
       <ul>
-        <li *ngIf="character.voiceActors.japanese"><strong>Japanese:</strong> {{ character.voiceActors.japanese }}</li>
-        <li *ngIf="character.voiceActors.english?.length"><strong>English:</strong> 
-          <ul>
-            <li *ngFor="let actor of character.voiceActors.english">{{ actor }}</li>
-          </ul>
+        <li *ngFor="let tool of character?.tools">{{ tool }}</li>
+      </ul>
+    </div>
+
+    <!-- Rank -->
+    <div *ngIf="character?.rank">
+      <h3>Rank</h3>
+      <ul>
+        <li *ngIf="character?.rank?.ninjaRank?.['Part I']">
+          <strong>Part I:</strong> {{ character.rank?.ninjaRank?.['Part I'] }}
+        </li>
+        <li *ngIf="character?.rank?.ninjaRank?.['Part II']">
+          <strong>Part II:</strong> {{ character.rank?.ninjaRank?.['Part II'] }}
+        </li>
+        <li *ngIf="character?.rank?.ninjaRank?.['Boruto Manga']">
+          <strong>Boruto Manga:</strong>
+          {{ character.rank?.ninjaRank?.['Boruto Manga'] }}
+        </li>
+        <li *ngIf="character?.rank?.ninjaRank?.['BlankPeriod']">
+          <strong>Blank Period:</strong>
+          {{ character.rank?.ninjaRank?.['BlankPeriod'] }}
+        </li>
+        <li *ngIf="character?.rank?.ninjaRegistration">
+          <strong>Ninja Registration:</strong>
+          {{ character.rank?.ninjaRegistration }}
         </li>
       </ul>
+    </div>
+
+    <!-- Voice Actors -->
+    <div *ngIf="character?.voiceActors">
+      <h3>Voice Actors:</h3>
+      <div *ngIf="character?.voiceActors?.japanese">
+        <strong>Japanese:</strong> {{ character.voiceActors?.japanese }}
+      </div>
+      <div *ngIf="character?.voiceActors?.english">
+        <strong>English:</strong> {{ character.voiceActors?.english }}
+      </div>
     </div>
   </div>
 </div>
-}

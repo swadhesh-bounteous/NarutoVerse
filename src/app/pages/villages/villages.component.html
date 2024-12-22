@@ -1,12 +1,12 @@
 <div class="pad-bottom-container">
-    <img
-      src="assets/images/img_comics.webp"
-      width="245px"
-      height="222px"
-      style="margin-top: 30px;"
-      alt="Hero Image"
-    />
-  </div>
+  <img
+    src="assets/images/img_comics.webp"
+    width="245px"
+    height="222px"
+    style="margin-top: 30px"
+    alt="Hero Image"
+  />
+</div>
 <section>
   <div class="divider">
     <img src="assets/images/divider.png" width="30%" height="20px" alt="" />
@@ -15,6 +15,7 @@
   <div class="divider">
     <img src="assets/images/divider.png" width="30%" height="20px" alt="" />
   </div>
+
   <div class="map-container">
     <div class="text-content">
       In the world of Naruto, the shinobi nations are powerful, militarized
@@ -48,12 +49,25 @@
     <img src="assets/images/divider.png" width="50%" height="20px" alt="" />
   </div>
   <h1 class="content-head">ALL VILLAGES WITH THEIR CHARACTERS</h1>
-  <div class="divider" style="margin-bottom: 20px;">
+  <div class="divider" style="margin-bottom: 20px">
     <img src="assets/images/divider.png" width="50%" height="20px" alt="" />
   </div>
+  <div class="search-container">
+    <input
+      id="search-village"
+      type="text"
+      [(ngModel)]="filterText"
+      placeholder="Search village by Name..."
+      class="search-input"
+    />
+  </div>
+
   <section class="acc-section">
-    <div *ngIf="isLoading">Loading...</div>
-    @if(villages.length > 0){ @for (village of villages; track $index) {
+    <div *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </div>
+    @if(villages.length > 0){ @for (village of villages |
+    filterVillages:filterText; track $index) {
     <app-village-card [village]="village"></app-village-card>
     } } @else{
     <p>No villages found.</p>

@@ -7,18 +7,27 @@ import { provideHttpClient } from '@angular/common/http';
 import { VillageCardComponent } from '../../components/village-card/village-card.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
-
+import { FormsModule } from '@angular/forms';
+import { FilterVillagesPipe } from '../../pipes/filter-villages.pipe';
+import { MatInputModule } from '@angular/material/input'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     VillagesComponent,
-    VillageCardComponent
+    VillageCardComponent,
+    FilterVillagesPipe
   ],
   imports: [
     CommonModule,
     VillagesRoutingModule,
     MatExpansionModule, 
-    CdkAccordionModule
+    CdkAccordionModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule, 
+    MatProgressSpinnerModule
   ],
   providers: [provideHttpClient()],
   exports: [

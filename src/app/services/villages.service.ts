@@ -8,7 +8,7 @@ import { VillageapiService } from './villageapi.service';
   providedIn: 'root',
 })
 export class VillagesService {
-  private apiUrl = 'https://narutodb.xyz/api/village';
+  private apiUrl = 'https://narutodb.xyz/api/village?page=1&limit=40';
 
   private defaultVillageData: VillageData = {
     villages: [],

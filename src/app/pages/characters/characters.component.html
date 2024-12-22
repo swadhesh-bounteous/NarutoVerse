@@ -1,1 +1,33 @@
-<p>characters works!</p>
+<div class="characters-container">
+    
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+  
+    <div class="divider">
+      <img src="assets/images/divider.png" width="100%" height="20px" alt="" />
+    </div>
+    <h1 class="content-head">CHARACTERS</h1>
+    <div class="divider">
+      <img src="assets/images/divider.png" width="100%" height="20px" alt="" />
+    </div>
+  
+    <div *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+    </div>
+  
+    <div class="characters-list">
+      <app-character-card
+        *ngFor="let character of characters"
+        [character]="character"
+        [routerLink]="['/character', character.id]"
+      ></app-character-card>
+    </div>
+  
+    <mat-paginator
+      [length]="totalItems"
+      [pageSize]="limit"
+      [pageSizeOptions]="[5, 10, 20, 50]"
+      (page)="onPageChange($event)"
+      aria-label="Select page"
+    ></mat-paginator>
+  </div>
+  

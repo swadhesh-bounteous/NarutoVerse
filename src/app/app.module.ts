@@ -18,7 +18,7 @@ import { NavHovUnderlineDirective } from './directives/nav-hov-underline.directi
     TailedBeastCardComponent,
     HeroCarouselComponent,
     NavbarComponent,
-    NavHovUnderlineDirective,
+    NavHovUnderlineDirective
   ],
   imports: [BrowserModule, AppRoutingModule, CommonModule],
   providers: [provideHttpClient(), provideAnimationsAsync()],

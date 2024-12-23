@@ -23,21 +23,19 @@ export class CharactersService {
 
   constructor(private charactersApiService: CharactersapiService) {}
 
-  // Fetch characters with pagination
   getCharacters(page: number, limit: number): Observable<CharactersData> {
     this.loadingSubject.next(true);
     this.errorSubject.next(null);
 
     return this.charactersApiService.getCharacters(page, limit).pipe(
       tap((data) => {
-        // Character additional logic can be done here before setting the characters data
       }),
       catchError((error) => {
         this.errorSubject.next('Failed to fetch characters.');
         console.error('Error fetching characters:', error);
-        return of(this.defaultCharacters); // Return default empty list on error
+        return of(this.defaultCharacters); 
       }),
-      finalize(() => this.loadingSubject.next(false)) // Turn off the loading indicator
+      finalize(() => this.loadingSubject.next(false)) 
     );
   }
 }

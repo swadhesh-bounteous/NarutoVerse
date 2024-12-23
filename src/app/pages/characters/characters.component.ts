@@ -16,6 +16,7 @@ export class CharactersComponent implements OnInit {
   limit: number = 20;
   isLoading: boolean = false;
   error: string = '';
+  filterText: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -44,5 +45,17 @@ export class CharactersComponent implements OnInit {
     this.currentPage = event.pageIndex; 
     this.limit = event.pageSize; 
     this.fetchCharacters();
+  }
+
+  goToFirstPage(): void {
+    if (this.paginator) {
+      this.paginator.firstPage();
+    }
+  }
+
+  goToLastPage(): void {
+    if (this.paginator) {
+      this.paginator.lastPage();
+    }
   }
 }

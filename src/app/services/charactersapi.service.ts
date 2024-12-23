@@ -20,7 +20,7 @@ export class CharactersapiService {
     return this.http.get<CharactersData>(this.apiUrl, { params }).pipe(
       catchError((err) => {
         console.error(`API GET Error for ${this.apiUrl}:`, err);
-        return throwError(() => err); // Propagate the error
+        return throwError(() => err); 
       })
     );
   }

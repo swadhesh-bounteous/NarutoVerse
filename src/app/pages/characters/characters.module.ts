@@ -6,17 +6,21 @@ import { CharactersComponent } from './characters.component';
 import { CharacterCardComponent } from '../../components/character-card/character-card.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FormsModule } from '@angular/forms';
+import { FilterCharactersPipe } from '../../pipes/filter-characters.pipe';
 
 @NgModule({
   declarations: [
     CharactersComponent,
-    CharacterCardComponent
+    CharacterCardComponent,
+    FilterCharactersPipe
   ],
   imports: [
     CommonModule,
     CharactersRoutingModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FormsModule
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -10,6 +10,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CommonModule } from '@angular/common';
 import { NavHovUnderlineDirective } from './directives/nav-hov-underline.directive';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { NavHovUnderlineDirective } from './directives/nav-hov-underline.directi
     NavbarComponent,
     NavHovUnderlineDirective
   ],
-  imports: [BrowserModule, AppRoutingModule, CommonModule],
+  imports: [BrowserModule, AppRoutingModule, CommonModule, StoreModule.forRoot({}, {})],
   providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent],
   exports:[NavHovUnderlineDirective]

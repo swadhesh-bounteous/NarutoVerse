@@ -29,6 +29,7 @@ export class CharactersService {
 
     return this.charactersApiService.getCharacters(page, limit).pipe(
       tap((data) => {
+        console.log('API Response:', data); // Verify this log to see the response
       }),
       catchError((error) => {
         this.errorSubject.next('Failed to fetch characters.');

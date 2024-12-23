@@ -13,5 +13,4 @@ export class FilterCharactersPipe implements PipeTransform {
     }
     return characters.filter((character)=> character.name.toLowerCase().includes(filterText.toLowerCase()))
   }
-
 }

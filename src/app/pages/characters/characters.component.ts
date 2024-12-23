@@ -1,7 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { CharactersService } from '../../services/characters.service';
 import { Character } from '../../models/character_types';
+import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import {
+  selectCharacters,
+  selectTotalCharacters,
+  selectIsLoading,
+  selectError,
+} from '../../state/characters.selectors';
+import { fetchCharacters } from '../../state/characters.actions';
 
 @Component({
   selector: 'app-characters',
@@ -10,52 +18,48 @@ import { Character } from '../../models/character_types';
   styleUrls: ['./characters.component.scss'],
 })
 export class CharactersComponent implements OnInit {
-  characters: Character[] = [];
-  totalItems: number = 0;
-  currentPage: number = 0; 
+  characters$: Observable<Character[]>;
+  totalCharacters$: Observable<number>;
+  isLoading$: Observable<boolean>;
+  error$: Observable<string | null>;
+  currentPage: number = 1;
   limit: number = 20;
-  isLoading: boolean = false;
-  error: string = '';
-  filterText: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private charactersService: CharactersService) {}
-
-  ngOnInit(): void {
-    this.fetchCharacters();
+  constructor(private store: Store) {
+    this.characters$ = this.store.pipe(select(selectCharacters));
+    this.totalCharacters$ = this.store.pipe(select(selectTotalCharacters));
+    this.isLoading$ = this.store.pipe(select(selectIsLoading));
+    this.error$ = this.store.pipe(select(selectError));
   }
 
-  fetchCharacters(): void {
-    this.isLoading = true;
-    this.charactersService.getCharacters(this.currentPage + 1, this.limit).subscribe({
-      next: (data) => {
-        this.characters = data.characters || [];
-        this.totalItems = data.totalCharacters || 0;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this.error = 'Failed to load characters';
-        this.isLoading = false;
-      },
-    });
+  ngOnInit(): void {
+    this.loadPageData(this.currentPage);
+  }
+
+  loadPageData(page: number): void {
+    this.store.dispatch(fetchCharacters({ page, limit: this.limit }));
   }
 
   onPageChange(event: PageEvent): void {
-    this.currentPage = event.pageIndex; 
-    this.limit = event.pageSize; 
-    this.fetchCharacters();
+    this.currentPage = event.pageIndex;
+    this.limit = event.pageSize;
+    this.loadPageData(this.currentPage);
   }
 
   goToFirstPage(): void {
     if (this.paginator) {
       this.paginator.firstPage();
+      this.loadPageData(0);
     }
   }
 
   goToLastPage(): void {
     if (this.paginator) {
+      const totalPages = Math.ceil(this.totalCharacters$ as unknown as number / this.limit);
       this.paginator.lastPage();
+      this.loadPageData(totalPages - 1);
     }
   }
 }

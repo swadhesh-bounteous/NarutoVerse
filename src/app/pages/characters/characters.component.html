@@ -1,7 +1,10 @@
 <div class="characters-container">
-    
-    <div *ngIf="error" class="error-message">{{ error }}</div>
+    <!-- Error message -->
+    <div *ngIf="error$ | async as error" class="error-message">
+      {{ error }}
+    </div>
   
+    <!-- Divider and title -->
     <div class="divider">
       <img src="assets/images/divider.png" width="100%" height="20px" alt="" />
     </div>
@@ -9,43 +12,62 @@
     <div class="divider">
       <img src="assets/images/divider.png" width="100%" height="20px" alt="" />
     </div>
-
-    <div *ngIf="isLoading">
-        <mat-spinner></mat-spinner>
-    </div>
-
-    <div class="search-container">
-        <input
-          id="search-character"
-          type="text"
-          [(ngModel)]="filterText"
-          placeholder="Search character by Name..."
-          class="search-input"
-        />
+  
+    <!-- Loading spinner -->
+    <div *ngIf="isLoading$ | async" class="loading-spinner">
+      <mat-spinner></mat-spinner>
     </div>
   
+    <!-- Search input -->
+    <!-- <div class="search-container">
+      <input
+        id="search-character"
+        type="text"
+        [(ngModel)]="filterText"
+        placeholder="Search character by Name..."
+        class="search-input"
+      />
+    </div> -->
+  
+    <!-- Characters list -->
     <div class="characters-list">
-        @if(characters.length > 0){
-            @for (character of characters | filterCharacters: filterText; track $index) {
-                <app-character-card
-                    [character]="character"
-                    [routerLink]="['/character', character.id]"
-                ></app-character-card>
-            }
-        }      
+      <ng-container *ngIf="characters$ | async as characters">
+        <ng-container *ngIf="characters.length > 0; else noCharacters">
+          <app-character-card
+            *ngFor="let character of characters"
+            [character]="character"
+            [routerLink]="['/character', character.id]"
+          ></app-character-card>
+        </ng-container>
+      </ng-container>
     </div>
   
+    <!-- No characters message -->
+    <ng-template #noCharacters>
+      <div class="no-characters-message">
+        No characters found.
+      </div>
+    </ng-template>
+  
+    <!-- Pagination controls -->
     <div class="pagination-controls">
-        <button (click)="goToFirstPage()" [disabled]="currentPage === 0">First Page</button>        
-        <mat-paginator
-          #paginator
-          [length]="totalItems"
-          [pageSize]="limit"
-          [pageSizeOptions]="[5, 10, 20, 50]"
-          (page)="onPageChange($event)"
-          aria-label="Select page"
-        ></mat-paginator>
-        <button (click)="goToLastPage()" [disabled]="currentPage === totalItems / limit - 1">Last Page</button>
+      <button (click)="goToFirstPage()" [disabled]="currentPage === 0">
+        First Page
+      </button>
+      <mat-paginator
+        #paginator
+        [length]="totalCharacters$ | async "
+        [pageSize]="limit"
+        [pageSizeOptions]="[5, 10, 20, 50]"
+        (page)="onPageChange($event)"
+        aria-label="Select page"
+      ></mat-paginator>
+      <button
+        (click)="goToLastPage()"
+        
+      >
+        Last Page
+      </button>
     </div>
   </div>
   

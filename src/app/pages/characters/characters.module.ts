@@ -8,6 +8,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import { FilterCharactersPipe } from '../../pipes/filter-characters.pipe';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { charactersReducer } from '../../state/characters.reducer';
+import { CharactersEffects } from '../../state/characters.effects';
 
 @NgModule({
   declarations: [

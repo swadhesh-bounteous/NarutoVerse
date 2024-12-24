@@ -19,3 +19,9 @@ export const fetchCharactersFailure = createAction(
   '[Characters API] Fetch Characters Failure',
   props<{ error: string }>()
 );
+
+export const setCurrentPage =  createAction(
+  '[Charaters API] Set Current Page',
+  props<{ currentPage: number }>()
+)
+

@@ -29,18 +29,22 @@
       />
     </div> -->
   
-    <!-- Characters list -->
     <div class="characters-list">
-      <ng-container *ngIf="characters$ | async as characters">
-        <ng-container *ngIf="characters.length > 0; else noCharacters">
-          <app-character-card
-            *ngFor="let character of characters"
-            [character]="character"
-            [routerLink]="['/character', character.id]"
-          ></app-character-card>
-        </ng-container>
+      <!-- Check if there are characters to display -->
+      <ng-container *ngIf="characters.length > 0; else noCharacters">
+        <app-character-card
+          *ngFor="let character of characters"
+          [character]="character"
+          [routerLink]="['/character', character.id]"
+        ></app-character-card>
       </ng-container>
+      
+      <!-- Template for when there are no characters -->
+      <ng-template #noCharacters>
+        <p>No characters found.</p>
+      </ng-template>
     </div>
+    
   
     <!-- No characters message -->
     <ng-template #noCharacters>
@@ -58,7 +62,7 @@
         #paginator
         [length]="totalCharacters$ | async "
         [pageSize]="limit"
-        [pageSizeOptions]="[5, 10, 20, 50]"
+        [pageSizeOptions]="[20]"
         (page)="onPageChange($event)"
         aria-label="Select page"
       ></mat-paginator>

@@ -4,40 +4,59 @@ import { Character } from '../../models/character_types';
 import { Observable, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import {
-  selectCharacters,
   selectTotalCharacters,
   selectIsLoading,
   selectError,
   getMaxPage,
-  selectCharactersForPage,
   getCharactersFromLocal,
 } from '../../state/characters.selectors';
 import {
   fetchCharacters,
   setCurrentPage,
 } from '../../state/characters.actions';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-characters',
   standalone: false,
   templateUrl: './characters.component.html',
   styleUrls: ['./characters.component.scss'],
+  animations:[
+    trigger('buttonState',[
+      state('normal', style({
+        transform: 'scale(1)',
+        backgroundColor: 'rgb(121, 98, 83)'
+      })),
+      state('hovered', style({
+        transform: 'scale(1.1)',
+        backgroundColor: 'rgb(70, 56, 46)'
+      })),
+      transition('normal <=> hovered', animate('300ms ease-in-out'))
+    ])
+  ]
 })
 export class CharactersComponent implements OnInit, OnDestroy {
-  // characters$: Observable<Character[]>;
   totalCharacters$: Observable<number>;
   isLoading$: Observable<boolean>;
   error$: Observable<string | null>;
   currentPage: number = 1;
   limit: number = 20;
   maxPage: number = -1;
+  filterText: string= '';
   private maxPageSubscription!: Subscription;
   characters: Character[] = [];
+  buttonState: string = 'normal';
+
+  onMouseEnter(){
+    this.buttonState = 'hovered';
+  }
+  onMouseLeave(){
+    this.buttonState = 'normal';
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private store: Store) {
-    // this.characters$ = this.store.pipe(select(selectCharacters));
     this.totalCharacters$ = this.store.pipe(select(selectTotalCharacters));
     this.isLoading$ = this.store.pipe(select(selectIsLoading));
     this.error$ = this.store.pipe(select(selectError));
@@ -45,17 +64,15 @@ export class CharactersComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadPageData(this.currentPage);
-    // Subscribe to the maxPage observable
     this.maxPageSubscription = this.store
       .pipe(select(getMaxPage))
       .subscribe((page) => {
         this.maxPage = page;
-        console.log('Max page:', this.maxPage); // For debugging
+        console.log('Max page:', this.maxPage); 
       });
   }
 
   ngOnDestroy(): void {
-    // Unsubscribe from maxPageSubscription to prevent memory leaks
     if (this.maxPageSubscription) {
       this.maxPageSubscription.unsubscribe();
     }
@@ -88,13 +105,4 @@ export class CharactersComponent implements OnInit, OnDestroy {
     }
   }
 
-  goToLastPage(): void {
-    if (this.paginator) {
-      const totalPages = Math.ceil(
-        (this.totalCharacters$ as unknown as number) / this.limit
-      );
-      this.paginator.lastPage();
-      this.loadPageData(totalPages - 1);
-    }
-  }
 }

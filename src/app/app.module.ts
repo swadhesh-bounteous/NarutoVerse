@@ -8,7 +8,7 @@ import { HeroCarouselComponent } from './components/hero-carousel/hero-carousel.
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { NavHovUnderlineDirective } from './directives/nav-hov-underline.directive';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -25,7 +25,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     NavbarComponent,
     NavHovUnderlineDirective
   ],
-  imports: [BrowserModule, AppRoutingModule, CommonModule, StoreModule.forRoot({ characters: charactersReducer }), // Register reducer here
+  imports: [BrowserModule, AppRoutingModule, NgOptimizedImage, CommonModule, StoreModule.forRoot({ characters: charactersReducer }), // Register reducer here
     EffectsModule.forRoot([CharactersEffects]), StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })],
   providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent],

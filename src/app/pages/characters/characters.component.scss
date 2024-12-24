@@ -48,11 +48,7 @@
         border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s ease;
-  
-        &:hover {
-          background-color: rgb(70, 56, 46);;
-        }
-  
+        
         &:disabled {
           background-color: #ccc;
           cursor: not-allowed;
@@ -91,3 +87,5 @@
     outline: none;
     border: 2px solid #6e4e34;
   }
+
+  

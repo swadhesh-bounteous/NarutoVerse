@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  
+  constructor(private authService: AuthService){}
   ngOnInit(): void {
     this.updateNavbarStyle();
   }
@@ -27,5 +28,9 @@ export class NavbarComponent {
 
     document.body.style.setProperty('--navbar-scroll', `rgba(0, 0, 0, ${opacity})`);
     document.body.style.setProperty('--navbar-scroll-text', 'white'); 
+  }
+
+  logout(){
+    this.authService.logout();
   }
 }

@@ -1,7 +1,12 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Character } from '../../models/character_types';
-import { Observable, Subscription } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  Observable,
+  Subscription,
+} from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import {
   selectTotalCharacters,
@@ -14,26 +19,39 @@ import {
   fetchCharacters,
   setCurrentPage,
 } from '../../state/characters.actions';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-characters',
   standalone: false,
   templateUrl: './characters.component.html',
   styleUrls: ['./characters.component.scss'],
-  animations:[
-    trigger('buttonState',[
-      state('normal', style({
-        transform: 'scale(1)',
-        backgroundColor: 'rgb(121, 98, 83)'
-      })),
-      state('hovered', style({
-        transform: 'scale(1.1)',
-        backgroundColor: 'rgb(70, 56, 46)'
-      })),
-      transition('normal <=> hovered', animate('300ms ease-in-out'))
-    ])
-  ]
+  animations: [
+    trigger('buttonState', [
+      state(
+        'normal',
+        style({
+          transform: 'scale(1)',
+          backgroundColor: 'rgb(121, 98, 83)',
+        })
+      ),
+      state(
+        'hovered',
+        style({
+          transform: 'scale(1.1)',
+          backgroundColor: 'rgb(70, 56, 46)',
+        })
+      ),
+      transition('normal <=> hovered', animate('300ms ease-in-out')),
+    ]),
+  ],
 })
 export class CharactersComponent implements OnInit, OnDestroy {
   totalCharacters$: Observable<number>;
@@ -42,15 +60,16 @@ export class CharactersComponent implements OnInit, OnDestroy {
   currentPage: number = 1;
   limit: number = 20;
   maxPage: number = -1;
-  filterText: string= '';
+  filterText: string = '';
   private maxPageSubscription!: Subscription;
   characters: Character[] = [];
   buttonState: string = 'normal';
+  filterTextControl = new FormControl('');
 
-  onMouseEnter(){
+  onMouseEnter() {
     this.buttonState = 'hovered';
   }
-  onMouseLeave(){
+  onMouseLeave() {
     this.buttonState = 'normal';
   }
 
@@ -63,12 +82,17 @@ export class CharactersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.filterTextControl.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((filterText) => {
+        this.filterText = filterText ?? '';
+      });
     this.loadPageData(this.currentPage);
     this.maxPageSubscription = this.store
       .pipe(select(getMaxPage))
       .subscribe((page) => {
         this.maxPage = page;
-        console.log('Max page:', this.maxPage); 
+        console.log('Max page:', this.maxPage);
       });
   }
 
@@ -93,7 +117,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
   }
 
   onPageChange(event: PageEvent): void {
-    this.currentPage = event.pageIndex+1;
+    this.currentPage = event.pageIndex + 1;
     this.limit = event.pageSize;
     this.loadPageData(this.currentPage);
   }
@@ -104,5 +128,4 @@ export class CharactersComponent implements OnInit, OnDestroy {
       this.loadPageData(0);
     }
   }
-
 }

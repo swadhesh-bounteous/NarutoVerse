@@ -55,8 +55,8 @@
   <div class="search-container">
     <input
       id="search-village"
-      type="text"
-      [(ngModel)]="filterText"
+      type="text"     
+      [formControl]="filterTextControl"
       placeholder="Search village by Name..."
       class="search-input"
     />

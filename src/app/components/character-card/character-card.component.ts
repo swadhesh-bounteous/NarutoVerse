@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Character } from '../../models/character_types';
 
 @Component({
@@ -6,7 +6,8 @@ import { Character } from '../../models/character_types';
   standalone: false,
   
   templateUrl: './character-card.component.html',
-  styleUrl: './character-card.component.scss'
+  styleUrl: './character-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharacterCardComponent {
   @Input() character!: Character;

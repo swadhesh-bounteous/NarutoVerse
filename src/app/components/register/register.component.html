@@ -1,0 +1,51 @@
+<h1 class="register-heading">Register</h1>
+
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="register-form">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      placeholder="Username"
+      formControlName="username"
+      class="form-control"
+    />
+    <div *ngIf="form.controls['username'].invalid && form.controls['username'].touched" class="error-text">
+      Username must be at least 4 characters long.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      placeholder="Email"
+      formControlName="email"
+      class="form-control"
+    />
+    <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="error-text">
+      Please enter a valid email address.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+      formControlName="password"
+      class="form-control"
+    />
+    <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="error-text">
+      Password must be at least 6 characters long.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid" class="submit-button">Sign Up</button>
+</form>

@@ -1,16 +1,28 @@
-import { Directive, ElementRef, HostBinding, HostListener, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Renderer2,
+} from '@angular/core';
 
 @Directive({
   selector: '[appNavHovUnderline]',
-  standalone: false
+  standalone: false,
 })
 export class NavHovUnderlineDirective {
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+  ) {}
 
   @HostListener('mouseenter') onMouseEnter() {
     this.renderer.setStyle(this.el.nativeElement, 'color', '#ffffff');
-    this.renderer.setStyle(this.el.nativeElement, 'transition', 'color 0.3s ease, text-decoration 0.3s ease');
+    this.renderer.setStyle(
+      this.el.nativeElement,
+      'transition',
+      'color 0.3s ease, text-decoration 0.3s ease',
+    );
   }
 
   @HostListener('mouseleave') onMouseLeave() {

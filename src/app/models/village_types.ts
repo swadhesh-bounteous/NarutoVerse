@@ -1,4 +1,4 @@
-import { Character } from "./character_types";
+import { Character } from './character_types';
 
 export interface VillageData {
   villages: Village[];

@@ -1,8 +1,17 @@
-<div style="margin-top: 120px">
+<div class="pad-bottom-container">
+  <img
+    src="assets/images/img_comics.webp"
+    width="245px"
+    height="222px"
+    style="margin-top: 30px"
+    alt="Hero Image"
+  />
+</div>
+
+<div style="margin-top: 90px">
   <app-content-header
     [title]="'Characters'"
     [width]="'100%'"
-    [height]="'20px'"
   ></app-content-header>
 </div>
 
@@ -32,7 +41,7 @@
   <div class="characters-list">
     <ng-container *ngIf="characters.length > 0; else noCharacters">
       <app-character-card
-        *ngFor="let character of characters | filterCharacters : filterText"
+        *ngFor="let character of characters | filterCharacters: filterText"
         [character]="character"
         [routerLink]="['/character', character.id]"
       ></app-character-card>
@@ -64,8 +73,9 @@
       #paginator
       [length]="totalCharacters$ | async"
       [pageSize]="limit"
+      [pageIndex]="true"
+      [hidePageSize]="true"
       (page)="onPageChange($event)"
-      aria-label="Select page"
     ></mat-paginator>
   </div>
 </div>

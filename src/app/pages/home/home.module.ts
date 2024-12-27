@@ -10,19 +10,13 @@ import { HeroCarouselComponent } from '../../components/hero-carousel/hero-carou
 
 @NgModule({
   declarations: [
-    HomeComponent, 
+    HomeComponent,
     HomeContentComponent,
     FooterComponent,
-    HeroCarouselComponent
+    HeroCarouselComponent,
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    SharedModule
-  ],
-  exports: [
-    HomeComponent
-  ],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  imports: [CommonModule, HomeRoutingModule, SharedModule],
+  exports: [HomeComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class HomeModule { }
+export class HomeModule {}

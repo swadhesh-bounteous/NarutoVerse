@@ -6,7 +6,7 @@ import { filter } from 'rxjs';
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: false,
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'NarutoVerse';
@@ -17,10 +17,13 @@ export class AppComponent {
   ngOnInit() {
     // Listen for navigation end events to check the route
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         // Hide navbar for login and register routes
-        if (event.urlAfterRedirects === '/login' || event.urlAfterRedirects === '/register') {
+        if (
+          event.urlAfterRedirects === '/login' ||
+          event.urlAfterRedirects === '/register'
+        ) {
           this.showNavbar = false;
         } else {
           this.showNavbar = true;

@@ -31,7 +31,6 @@ export class VillagesComponent implements OnInit {
         this.isLoading = false;
       },
       error: (error) => {
-        console.error('Error fetching villages data:', error);
         this.isLoading = false;
       },
     });

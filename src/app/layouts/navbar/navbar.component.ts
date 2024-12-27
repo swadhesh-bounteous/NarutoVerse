@@ -19,13 +19,13 @@ import {
         'in',
         style({
           transform: 'translate3d(0,0,0)',
-        })
+        }),
       ),
       state(
         'out',
         style({
           transform: 'translate3d(100%, 0, 0)',
-        })
+        }),
       ),
       transition('in => out', animate('400ms ease-in-out')),
       transition('out => in', animate('400ms ease-in-out')),
@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
   }
 
   private checkIfMobile(): void {
-    this.isMobile = window.innerWidth <= 768; 
+    this.isMobile = window.innerWidth <= 768;
   }
 
   toggleMenu() {
@@ -52,7 +52,7 @@ export class NavbarComponent implements OnInit {
   }
   ngOnInit(): void {
     this.updateNavbarStyle();
-    this.checkIfMobile()
+    this.checkIfMobile();
   }
 
   @HostListener('window:scroll', [])
@@ -70,13 +70,13 @@ export class NavbarComponent implements OnInit {
       minOpacity,
       Math.min(
         baseOpacity,
-        baseOpacity - (scrollTop / maxScroll) * (baseOpacity - minOpacity)
-      )
+        baseOpacity - (scrollTop / maxScroll) * (baseOpacity - minOpacity),
+      ),
     );
 
     document.body.style.setProperty(
       '--navbar-scroll',
-      `rgba(0, 0, 0, ${opacity})`
+      `rgba(0, 0, 0, ${opacity})`,
     );
     document.body.style.setProperty('--navbar-scroll-text', 'white');
   }

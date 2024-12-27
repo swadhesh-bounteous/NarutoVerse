@@ -3,14 +3,15 @@ import { Character } from '../models/character_types';
 
 @Pipe({
   name: 'filterCharacters',
-  standalone: false
+  standalone: false,
 })
 export class FilterCharactersPipe implements PipeTransform {
-
   transform(characters: Character[], filterText: string): Character[] {
-    if(!characters || !filterText){
+    if (!characters || !filterText) {
       return characters;
     }
-    return characters.filter((character)=> character.name.toLowerCase().includes(filterText.toLowerCase()))
+    return characters.filter((character) =>
+      character.name.toLowerCase().includes(filterText.toLowerCase()),
+    );
   }
 }

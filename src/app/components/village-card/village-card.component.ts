@@ -9,7 +9,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
   templateUrl: './village-card.component.html',
   styleUrl: './village-card.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VillageCardComponent {
   @Input() village!: Village;

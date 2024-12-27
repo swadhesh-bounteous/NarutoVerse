@@ -7,12 +7,8 @@
     alt="Hero Image"
   />
 </div>
-<section>
-  <app-content-header
-    [title]="'VILLAGES'"
-    [width]="'30%'"
-    [height]="'20px'"
-  ></app-content-header>
+<section class="content-container">
+  <app-content-header [title]="'VILLAGES'" [width]="'30%'"></app-content-header>
 
   <div class="map-container">
     <div class="text-content">
@@ -41,17 +37,22 @@
       the Naruto series, where alliances, rivalries, and politics shape the
       destiny of its characters.
     </div>
-    <img src="assets/images/villages_map.jpg" width="600" height="600" alt="" />
+    <img
+      class="map-img"
+      src="assets/images/villages_map.jpg"
+      width="400"
+      height="400"
+      alt=""
+    />
   </div>
   <app-content-header
-    [title]="'All Villages with their Characters'"
+    [title]="'Characters in Villages'"
     [width]="'50%'"
-    [height]="'20px'"
   ></app-content-header>
   <div class="search-container">
     <input
       id="search-village"
-      type="text"     
+      type="text"
       [formControl]="filterTextControl"
       placeholder="Search village by Name..."
       class="search-input"
@@ -62,10 +63,10 @@
     <div *ngIf="isLoading">
       <mat-spinner></mat-spinner>
     </div>
-    @if(villages.length > 0){ 
-        @for (village of villages | filterVillages : filterText; track $index) {
-            <app-village-card [village]="village"></app-village-card>
-        } 
+    @if (villages.length > 0) {
+      @for (village of villages | filterVillages: filterText; track $index) {
+        <app-village-card [village]="village"></app-village-card>
+      }
     }
   </section>
 </section>

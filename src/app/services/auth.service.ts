@@ -8,13 +8,13 @@ import { from, Observable } from 'rxjs';
 export class AuthService {
   supabase = createClient(
     'https://bizdpqtvineizdbyllya.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJpemRwcXR2aW5laXpkYnlsbHlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzUxNzU5NjksImV4cCI6MjA1MDc1MTk2OX0.a-ZqXZqcuZGDaupf9LJjnOP2p7ajuEZXjcluIzTI690'
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJpemRwcXR2aW5laXpkYnlsbHlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzUxNzU5NjksImV4cCI6MjA1MDc1MTk2OX0.a-ZqXZqcuZGDaupf9LJjnOP2p7ajuEZXjcluIzTI690',
   );
 
   register(
     email: string,
     username: string,
-    password: string
+    password: string,
   ): Observable<AuthResponse> {
     const promise = this.supabase.auth.signUp({
       email,
@@ -42,15 +42,13 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     const tokenString = localStorage.getItem(
-      'sb-bizdpqtvineizdbyllya-auth-token'
+      'sb-bizdpqtvineizdbyllya-auth-token',
     );
-    if(tokenString){
+    if (tokenString) {
       const tokenObject = JSON.parse(tokenString);
       const token = tokenObject.access_token;
-      console.log(localStorage);
-      console.log('Token:', token);
-      return true
-    }    
+      return true;
+    }
     return false;
   }
 }

@@ -28,15 +28,11 @@ export class CharactersService {
     this.errorSubject.next(null);
 
     return this.charactersApiService.getCharacters(page, limit).pipe(
-      tap((data) => {
-        console.log('API Response:', data); // Verify this log to see the response
-      }),
       catchError((error) => {
         this.errorSubject.next('Failed to fetch characters.');
-        console.error('Error fetching characters:', error);
-        return of(this.defaultCharacters); 
+        return of(this.defaultCharacters);
       }),
-      finalize(() => this.loadingSubject.next(false)) 
+      finalize(() => this.loadingSubject.next(false)),
     );
   }
 }

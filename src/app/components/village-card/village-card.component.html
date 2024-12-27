@@ -6,17 +6,17 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    @if(village.characters.length > 0){
-        @for (character of village.characters; track $index) {
-            <div class="character-name">
-              <p>{{ character.name }}</p>
-              <button class="btn-view" [routerLink]="['/character', character.id]">View Character details</button>
-            </div>
-        }
+    @if (village.characters.length > 0) {
+      @for (character of village.characters; track $index) {
+        <div class="character-name">
+          <p>{{ character.name }}</p>
+          <button class="btn-view" [routerLink]="['/character', character.id]">
+            View Character details
+          </button>
+        </div>
+      }
+    } @else {
+      <p>No characters found in this village.</p>
     }
-    @else {
-        <p>No characters found in this village.</p>
-    }
-    
   </mat-expansion-panel>
 </mat-accordion>

@@ -40,14 +40,14 @@ import { FormControl } from '@angular/forms';
         style({
           transform: 'scale(1)',
           backgroundColor: 'rgb(121, 98, 83)',
-        })
+        }),
       ),
       state(
         'hovered',
         style({
           transform: 'scale(1.1)',
           backgroundColor: 'rgb(70, 56, 46)',
-        })
+        }),
       ),
       transition('normal <=> hovered', animate('300ms ease-in-out')),
     ]),
@@ -92,7 +92,6 @@ export class CharactersComponent implements OnInit, OnDestroy {
       .pipe(select(getMaxPage))
       .subscribe((page) => {
         this.maxPage = page;
-        console.log('Max page:', this.maxPage);
       });
   }
 
@@ -111,7 +110,6 @@ export class CharactersComponent implements OnInit, OnDestroy {
     this.store
       .select(getCharactersFromLocal(this.currentPage))
       .subscribe((characters) => {
-        console.log('Characters from local:', characters);
         this.characters = characters;
       });
   }

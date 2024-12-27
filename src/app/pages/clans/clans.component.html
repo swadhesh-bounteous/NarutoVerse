@@ -1,1 +1,71 @@
-<p>clans works!</p>
+<div class="pad-bottom-container">
+  <img
+    src="assets/images/img_comics.webp"
+    width="245px"
+    height="222px"
+    style="margin-top: 30px"
+    alt="Hero Image"
+  />
+</div>
+<section class="content-container">
+  <app-content-header [title]="'CLANS'" [width]="'30%'"></app-content-header>
+
+  <div class="map-container">
+    <div class="text-content">
+      In the world of Naruto, clans are integral to the development of shinobi
+      techniques and the political balance of the shinobi nations. Each clan
+      possesses unique abilities, traditions, and skills that shape their
+      legacy. For example, the Uchiha Clan from Konohagakure is known for its
+      Sharingan, a powerful bloodline ability that grants extraordinary vision,
+      the ability to read and predict movements, and powerful jutsu like the
+      Amaterasu and Susanoo. The Uchiha are one of the most influential clans in
+      the series, with members like Sasuke and Itachi playing pivotal roles in
+      the story. The Uzumaki Clan, also from Konohagakure, is famed for their
+      mastery in sealing jutsu, which allows them to trap powerful entities and
+      protect their people. Naruto Uzumaki, the protagonist, is a descendant of
+      this clan and inherits their vast chakra reserves and healing
+      abilities.<br /><br />
+      Other notable clans include the Hyuga Clan, renowned for their Byakugan, a
+      dojutsu that grants 360-degree vision and the ability to see through solid
+      objects, making them formidable in both combat and intelligence gathering.
+      The Nara Clan from the Land of Fire is known for their shadow manipulation
+      techniques, with members like Shikamaru Nara displaying exceptional
+      tactical intelligence. Similarly, the Akimichi Clan specializes in
+      size-altering techniques, allowing them to greatly increase their physical
+      strength and size during battle. These clans, among many others,
+      contribute to the rich fabric of the shinobi world, each clan shaping the
+      destiny of its members and the overarching events in the Naruto series.
+    </div>
+    <img
+      class="map-img"
+      src="assets/images/clans_img.jpg"
+      width="400"
+      height="400"
+      alt=""
+    />
+  </div>
+  <app-content-header
+    [title]="'Characters in clans'"
+    [width]="'50%'"
+  ></app-content-header>
+  <div class="search-container">
+    <input
+      id="search-clan"
+      type="text"
+      [formControl]="filterTextControl"
+      placeholder="Search clan by Name..."
+      class="search-input"
+    />
+  </div>
+
+  <section class="acc-section">
+    <div *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </div>
+    @if (clans.length > 0) {
+      @for (clan of clans | filterClans: filterText; track $index) {
+        <app-clan-card [clan]="clan"></app-clan-card>
+      }
+    }
+  </section>
+</section>

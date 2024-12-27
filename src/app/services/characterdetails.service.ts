@@ -5,7 +5,7 @@ import { Character } from '../models/character_types';
 import { CharacterdetailsapiService } from './characterdetailsapi.service'; // Import the new API service
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CharacterdetailsService {
   private apiUrl = 'https://narutodb.xyz/api/character';
@@ -13,7 +13,7 @@ export class CharacterdetailsService {
   private defaultCharacterData: Character = {
     id: '',
     name: 'No character available',
-    images: [] 
+    images: [],
   };
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
@@ -22,7 +22,7 @@ export class CharacterdetailsService {
   loading$: Observable<boolean> = this.loadingSubject.asObservable();
   error$: Observable<string | null> = this.errorSubject.asObservable();
 
-  constructor(private characterApiService: CharacterdetailsapiService) { } 
+  constructor(private characterApiService: CharacterdetailsapiService) {}
 
   getCharacterDetails(id: string): Observable<Character> {
     this.loadingSubject.next(true);
@@ -34,7 +34,7 @@ export class CharacterdetailsService {
         this.errorSubject.next('Failed to fetch character details.');
         return of(this.defaultCharacterData);
       }),
-      finalize(() => this.loadingSubject.next(false))
+      finalize(() => this.loadingSubject.next(false)),
     );
   }
 }

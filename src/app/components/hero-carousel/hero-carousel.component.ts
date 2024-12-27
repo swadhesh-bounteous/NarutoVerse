@@ -7,10 +7,10 @@ register();
 @Component({
   selector: 'app-hero-carousel',
   standalone: false,
-  
+
   templateUrl: './hero-carousel.component.html',
   styleUrl: './hero-carousel.component.scss',
 })
 export class HeroCarouselComponent {
-  slides:Slide[] = slides;
+  slides: Slide[] = slides;
 }

@@ -4,13 +4,12 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { CharactersData } from '../models/character_types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CharactersapiService {
-
   private apiUrl = 'https://narutodb.xyz/api/character';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getCharacters(page: number, limit: number): Observable<CharactersData> {
     const params = new HttpParams()
@@ -19,9 +18,8 @@ export class CharactersapiService {
 
     return this.http.get<CharactersData>(this.apiUrl, { params }).pipe(
       catchError((err) => {
-        console.error(`API GET Error for ${this.apiUrl}:`, err);
-        return throwError(() => err); 
-      })
+        return throwError(() => err);
+      }),
     );
   }
 }

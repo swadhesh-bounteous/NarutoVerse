@@ -6,22 +6,22 @@ export const selectCharactersState =
 
 export const selectTotalCharacters = createSelector(
   selectCharactersState,
-  (state) => state.totalCharacters
+  (state) => state.totalCharacters,
 );
 
 export const selectIsLoading = createSelector(
   selectCharactersState,
-  (state) => state.isLoading
+  (state) => state.isLoading,
 );
 
 export const selectError = createSelector(
   selectCharactersState,
-  (state) => state.error
+  (state) => state.error,
 );
 
 export const getMaxPage = createSelector(
   selectCharactersState,
-  (state) => state.maxPage
+  (state) => state.maxPage,
 );
 
 export const getCharactersFromLocal = (page: number) => {

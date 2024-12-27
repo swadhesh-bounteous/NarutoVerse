@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { RegisterPageRoutingModule } from './register-page-routing.module';
 
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RegisterPageRoutingModule
-  ]
+  imports: [CommonModule, RegisterPageRoutingModule],
 })
-export class RegisterPageModule { }
+export class RegisterPageModule {}

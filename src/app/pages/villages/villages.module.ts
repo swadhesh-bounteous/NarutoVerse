@@ -9,31 +9,26 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterVillagesPipe } from '../../pipes/filter-villages.pipe';
-import { MatInputModule } from '@angular/material/input'; 
+import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from '../../shared/shared/shared.module';
 
 @NgModule({
-  declarations: [
-    VillagesComponent,
-    VillageCardComponent,
-    FilterVillagesPipe
-  ],
+  declarations: [VillagesComponent, VillageCardComponent, FilterVillagesPipe],
   imports: [
     CommonModule,
     VillagesRoutingModule,
-    MatExpansionModule, 
-    CdkAccordionModule,
+    MatExpansionModule,
     FormsModule,
     MatInputModule,
-    MatFormFieldModule, 
-    MatProgressSpinnerModule, ReactiveFormsModule, SharedModule
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    SharedModule,
   ],
   providers: [provideHttpClient()],
-  exports: [
-    VillagesComponent
-  ],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  exports: [VillagesComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class VillagesModule { }
+export class VillagesModule {}

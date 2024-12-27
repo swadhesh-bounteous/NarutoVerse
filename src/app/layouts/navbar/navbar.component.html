@@ -1,31 +1,76 @@
 <nav class="nav-container">
-    <div class="logo-container">
-        <img src="assets/images/logo.png" width="150" height="30" alt="logo" />
+  <div class="logo-container">
+    <img src="assets/images/logo.png" width="150" height="30" alt="logo" />
+  </div>
+  @if (!isMobile) {
+    <ul class="list-container">
+      <li>
+        <a routerLink="/home" routerLinkActive="active" appNavHovUnderline
+          >Home</a
+        >
+      </li>
+      <li>
+        <a routerLink="/characters" routerLinkActive="active" appNavHovUnderline
+          >Characters</a
+        >
+      </li>
+      <li>
+        <a routerLink="/clans" routerLinkActive="active" appNavHovUnderline
+          >Clans</a
+        >
+      </li>
+      <li>
+        <a routerLink="/villages" routerLinkActive="active" appNavHovUnderline
+          >Villages</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/login"
+          routerLinkActive="active"
+          (click)="logout()"
+          appNavHovUnderline
+          >Logout</a
+        >
+      </li>
+    </ul>
+  } @else {
+    <div class="hamburger" (click)="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-    @if(!isMobile){
-        <ul class="list-container">
-            <li><a routerLink="/home" routerLinkActive="active" appNavHovUnderline>Home</a></li>
-            <li><a routerLink="/characters" routerLinkActive="active" appNavHovUnderline>Characters</a></li>
-            <li><a routerLink="/clans" routerLinkActive="active" appNavHovUnderline>Clans</a></li>
-            <li><a routerLink="/tailed-beasts" routerLinkActive="active" appNavHovUnderline>Tailed Beasts</a></li>
-            <li><a routerLink="/villages" routerLinkActive="active" appNavHovUnderline>Villages</a></li>
-            <li><a routerLink="/login" routerLinkActive="active" (click)="logout()" appNavHovUnderline>Logout</a></li>
-        </ul>
-    }
-    @else {
-        <div class="hamburger" (click)="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <ul class="list-container" [@slideInOut]="menuState">
-            <li><button (click)="toggleMenu()">X</button></li>
-            <li><a routerLink="/home" routerLinkActive="active" appNavHovUnderline>Home</a></li>
-            <li><a routerLink="/characters" routerLinkActive="active" appNavHovUnderline>Characters</a></li>
-            <li><a routerLink="/clans" routerLinkActive="active" appNavHovUnderline>Clans</a></li>
-            <li><a routerLink="/tailed-beasts" routerLinkActive="active" appNavHovUnderline>Tailed Beasts</a></li>
-            <li><a routerLink="/villages" routerLinkActive="active" appNavHovUnderline>Villages</a></li>
-            <li><a routerLink="/login" routerLinkActive="active" (click)="logout()" appNavHovUnderline>Logout</a></li>
-        </ul>
-    }
+    <ul class="list-container" [@slideInOut]="menuState">
+      <li><button (click)="toggleMenu()">X</button></li>
+      <li>
+        <a routerLink="/home" routerLinkActive="active" appNavHovUnderline
+          >Home</a
+        >
+      </li>
+      <li>
+        <a routerLink="/characters" routerLinkActive="active" appNavHovUnderline
+          >Characters</a
+        >
+      </li>
+      <li>
+        <a routerLink="/clans" routerLinkActive="active" appNavHovUnderline
+          >Clans</a
+        >
+      </li>
+      <li>
+        <a routerLink="/villages" routerLinkActive="active" appNavHovUnderline
+          >Villages</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/login"
+          routerLinkActive="active"
+          (click)="logout()"
+          appNavHovUnderline
+          >Logout</a
+        >
+      </li>
+    </ul>
+  }
 </nav>

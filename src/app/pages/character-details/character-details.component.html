@@ -9,7 +9,6 @@
     *ngIf="!loading && !error"
     [title]="character.name"
     [width]="'100%'"
-    [height]="'20px'"
   ></app-content-header>
 </div>
 
@@ -103,7 +102,7 @@
         </li>
         <li *ngIf="character?.personal?.kekkeiGenkai?.length">
           <strong>Kekkei Genkai:</strong>
-          <span *ngIf="typeof character?.personal?.kekkeiGenkai== 'string'">
+          <span *ngIf="typeof character?.personal?.kekkeiGenkai == 'string'">
             {{ character.personal?.kekkeiGenkai }}
           </span>
           <ol>
@@ -114,7 +113,7 @@
         </li>
         <li *ngIf="character?.personal?.occupation?.length">
           <strong>Occupation:</strong>
-          <span *ngIf="typeof character?.personal?.occupation== 'string'">
+          <span *ngIf="typeof character?.personal?.occupation == 'string'">
             {{ character.personal?.occupation }}
           </span>
           <ol>
@@ -125,14 +124,22 @@
         </li>
         <li *ngIf="character?.personal?.affiliation?.length">
           <strong>Affiliation:</strong>
-          <span *ngIf="typeof character?.personal?.affiliation=== 'string'">
+          <span
+            *ngIf="
+              typeof character?.personal?.affiliation === 'string';
+              else arrayTemplate
+            "
+          >
             {{ character.personal?.affiliation }}
           </span>
-          <ol>
-            <li *ngFor="let aff of character?.personal?.affiliation">
-              {{ aff }}
-            </li>
-          </ol>
+
+          <ng-template #arrayTemplate>
+            <ol>
+              <li *ngFor="let affiliation of character?.personal?.affiliation">
+                {{ affiliation }}
+              </li>
+            </ol>
+          </ng-template>
         </li>
         <li *ngIf="character?.personal?.team?.length">
           <strong>Team:</strong>
@@ -143,8 +150,23 @@
             <li *ngFor="let team of character?.personal?.team">{{ team }}</li>
           </ol>
         </li>
+
         <li *ngIf="character?.personal?.clan">
-          <strong>Clan:</strong> {{ character.personal?.clan }}
+          <strong>Clan:</strong>
+          <span
+            *ngIf="
+              typeof character?.personal?.clan === 'string';
+              else arrayTemplate
+            "
+          >
+            {{ character.personal?.clan }}
+          </span>
+
+          <ng-template #arrayTemplate>
+            <ol>
+              <li *ngFor="let clan of character?.personal?.clan">{{ clan }}</li>
+            </ol>
+          </ng-template>
         </li>
         <li *ngIf="character?.personal?.titles?.length">
           <strong>Titles:</strong>
@@ -170,18 +192,18 @@
       <h3>Rank</h3>
       <ul>
         <li *ngIf="character?.rank?.ninjaRank?.['Part I']">
-          <strong>Part I:</strong> {{ character.rank?.ninjaRank?.['Part I'] }}
+          <strong>Part I:</strong> {{ character.rank?.ninjaRank?.["Part I"] }}
         </li>
         <li *ngIf="character?.rank?.ninjaRank?.['Part II']">
-          <strong>Part II:</strong> {{ character.rank?.ninjaRank?.['Part II'] }}
+          <strong>Part II:</strong> {{ character.rank?.ninjaRank?.["Part II"] }}
         </li>
         <li *ngIf="character?.rank?.ninjaRank?.['Boruto Manga']">
           <strong>Boruto Manga:</strong>
-          {{ character.rank?.ninjaRank?.['Boruto Manga'] }}
+          {{ character.rank?.ninjaRank?.["Boruto Manga"] }}
         </li>
         <li *ngIf="character?.rank?.ninjaRank?.['BlankPeriod']">
           <strong>Blank Period:</strong>
-          {{ character.rank?.ninjaRank?.['BlankPeriod'] }}
+          {{ character.rank?.ninjaRank?.["BlankPeriod"] }}
         </li>
         <li *ngIf="character?.rank?.ninjaRegistration">
           <strong>Ninja Registration:</strong>

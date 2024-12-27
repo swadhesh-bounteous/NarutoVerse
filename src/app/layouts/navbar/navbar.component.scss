@@ -9,7 +9,10 @@
   align-items: center;
   background-color: var(--navbar-scroll, transparent);
   color: var(--navbar-scroll-text, white);
-  transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease,
+    box-shadow 0.5s ease;
   box-shadow: var(--navbar-scroll-shadow, none);
 }
 
@@ -51,7 +54,7 @@
 }
 
 @media (max-width: 768px) {
-  .nav-container{
+  .nav-container {
     padding: 20px 40px;
   }
   .list-container {

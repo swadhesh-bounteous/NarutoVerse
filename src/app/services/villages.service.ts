@@ -33,7 +33,7 @@ export class VillagesService {
       catchError(() => {
         return of(this.defaultVillageData);
       }),
-      finalize(() => this.loadingSubject.next(false))
+      finalize(() => this.loadingSubject.next(false)),
     );
   }
 }

@@ -1,1 +1,22 @@
-<p>clan-card works!</p>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title class="clan-name">
+        {{ clan.name }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    @if (clan.characters.length > 0) {
+      @for (character of clan.characters; track $index) {
+        <div class="character-name">
+          <p>{{ character.name }}</p>
+          <button class="btn-view" [routerLink]="['/character', character.id]">
+            View Character details
+          </button>
+        </div>
+      }
+    } @else {
+      <p>No characters found in this clan.</p>
+    }
+  </mat-expansion-panel>
+</mat-accordion>

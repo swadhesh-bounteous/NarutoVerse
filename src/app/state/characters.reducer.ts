@@ -1,4 +1,3 @@
-
 import { createReducer, on } from '@ngrx/store';
 import {
   fetchCharacters,
@@ -25,7 +24,7 @@ export const initialState: CharactersState = {
   totalCharacters: 0,
   isLoading: false,
   error: null,
-  maxPage: 1
+  maxPage: 1,
 };
 
 export const charactersReducer = createReducer(
@@ -36,11 +35,11 @@ export const charactersReducer = createReducer(
     isLoading: false,
     pageSize: charactersData.pageSize,
     currentPage: charactersData.currentPage,
-    characters: [...state.characters, ...charactersData.characters], 
-    totalCharacters: charactersData.totalCharacters, 
-    maxPage: Math.max(charactersData.currentPage, state.maxPage)
+    characters: [...state.characters, ...charactersData.characters],
+    totalCharacters: charactersData.totalCharacters,
+    maxPage: Math.max(charactersData.currentPage, state.maxPage),
   })),
-  
+
   on(fetchCharactersFailure, (state, { error }) => ({
     ...state,
     isLoading: false,
@@ -48,6 +47,6 @@ export const charactersReducer = createReducer(
   })),
   on(setCurrentPage, (state, { currentPage }) => ({
     ...state,
-    currentPage
-  }))
+    currentPage,
+  })),
 );

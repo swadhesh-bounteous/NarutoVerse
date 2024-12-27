@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { LoginPageRoutingModule } from './login-page-routing.module';
 
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    LoginPageRoutingModule
-  ]
+  imports: [CommonModule, LoginPageRoutingModule],
 })
-export class LoginPageModule { }
+export class LoginPageModule {}

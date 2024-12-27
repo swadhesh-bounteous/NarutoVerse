@@ -1,3 +1,13 @@
+<div class="pad-bottom-container">
+  <img
+    src="assets/images/img_comics.webp"
+    width="245px"
+    height="222px"
+    style="margin-top: 30px"
+    alt="Hero Image"
+  />
+</div>
+
 <h1 class="login-heading">Login</h1>
 
 <div *ngIf="errorMessage" class="error-message">
@@ -14,7 +24,10 @@
       formControlName="email"
       class="form-control"
     />
-    <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="error-text">
+    <div
+      *ngIf="form.controls['email'].invalid && form.controls['email'].touched"
+      class="error-text"
+    >
       Please enter a valid email.
     </div>
   </div>
@@ -28,10 +41,21 @@
       formControlName="password"
       class="form-control"
     />
-    <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="error-text">
+    <div
+      *ngIf="
+        form.controls['password'].invalid && form.controls['password'].touched
+      "
+      class="error-text"
+    >
       Password must be at least 6 characters.
     </div>
   </div>
 
-  <button type="submit" [disabled]="form.invalid" class="submit-button">Login</button>
+  <button type="submit" [disabled]="form.invalid" class="submit-button">
+    Login
+  </button>
 </form>
+
+<div class="register-message">
+  <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+</div>

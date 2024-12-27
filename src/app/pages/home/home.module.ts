@@ -5,7 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { HomeContentComponent } from '../../components/home-content/home-content.component';
 import { FooterComponent } from '../../layouts/footer/footer.component';
-
+import { SharedModule } from '../../shared/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { FooterComponent } from '../../layouts/footer/footer.component';
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    SharedModule
   ],
   exports: [
     HomeComponent

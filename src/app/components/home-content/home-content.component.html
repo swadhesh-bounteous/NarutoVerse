@@ -3,20 +3,18 @@
     src="assets/images/naruto_eww.webp"
     width="170px"
     height="222px"
-    style="margin-top: 30px; margin-left: 30px;"
+    style="margin-top: 30px; margin-left: 30px"
     alt="Hero Image"
   />
 </div>
 
 <section class="content-container">
   <div class="info-section">
-    <div class="divider">
-      <img src="assets/images/divider.png" width="30%" height="20px" />
-    </div>
-    <h1 class="content-head">About Naruto</h1>
-    <div class="divider">
-      <img src="assets/images/divider.png" width="30%" height="20px" />
-    </div>
+    <app-content-header
+      [title]="'About Naruto'"
+      [width]="'30%'"
+      [height]="'20px'"
+    ></app-content-header>
     <div class="image-right-text">
       <div class="text-content">
         Naruto is a Shonen (teen male oriented) animated series and manga
@@ -51,13 +49,11 @@
   </div>
 
   <div class="info-section">
-    <div class="divider">
-      <img src="assets/images/divider.png" width="30%" height="20px" />
-    </div>
-    <h1 class="content-head">The Story</h1>
-    <div class="divider">
-      <img src="assets/images/divider.png" width="30%" height="20px" />
-    </div>
+    <app-content-header
+      [title]="'The Story'"
+      [width]="'30%'"
+      [height]="'20px'"
+    ></app-content-header>
     <div class="image-right-text">
       <div class="text-content">
         Naruto follows the story of a young, energetic, and mischievous ninja

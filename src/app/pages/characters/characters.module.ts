@@ -8,10 +8,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterCharactersPipe } from '../../pipes/filter-characters.pipe';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { charactersReducer } from '../../state/characters.reducer';
-import { CharactersEffects } from '../../state/characters.effects';
+import { SharedModule } from '../../shared/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +22,8 @@ import { CharactersEffects } from '../../state/characters.effects';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

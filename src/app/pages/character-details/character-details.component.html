@@ -4,15 +4,16 @@
   <p>{{ error }}</p>
 </div>
 
-<div *ngIf="!loading && !error" class="container">
-  <div class="divider">
-    <img src="assets/images/divider.png" width="100%" height="20px" />
-  </div>
-  <h1>{{ character.name }}</h1>
-  <div class="divider">
-    <img src="assets/images/divider.png" width="100%" height="20px" />
-  </div>
+<div style="padding-top: 120px">
+  <app-content-header
+    *ngIf="!loading && !error"
+    [title]="character.name"
+    [width]="'100%'"
+    [height]="'20px'"
+  ></app-content-header>
+</div>
 
+<div *ngIf="!loading && !error" class="container">
   <div class="character-info">
     <p><strong>ID:</strong> {{ character.id }}</p>
     <p><strong>Name:</strong> {{ character.name }}</p>

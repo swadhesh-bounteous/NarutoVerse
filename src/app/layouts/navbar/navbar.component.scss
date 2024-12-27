@@ -1,41 +1,89 @@
 .nav-container {
-    padding: 10px 40px;
+  padding: 10px 40px;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--navbar-scroll, transparent);
+  color: var(--navbar-scroll-text, white);
+  transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+  box-shadow: var(--navbar-scroll-shadow, none);
+}
+
+.list-container {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-container li {
+  list-style: none;
+}
+
+.list-container li a {
+  color: #f7a11b;
+  text-decoration: none;
+  font-size: small;
+  font-weight: 600;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.nav-container a.active {
+  color: white !important;
+  text-decoration: underline !important;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+  .nav-container{
+    padding: 20px 40px;
+  }
+  .list-container {
     position: fixed;
     top: 0;
-    z-index: 1000;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    right: 0;
+    height: 100%;
+    width: 250px;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
     align-items: center;
-    background-color: var(--navbar-scroll, transparent);
-    color: var(--navbar-scroll-text, white);
-    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
-    box-shadow: var(--navbar-scroll-shadow, none);
+    justify-content: center;
+    transform: translate3d(100%, 0, 0);
+    transition: transform 400ms ease-in-out;
   }
-  
-  .list-container {
-    width: 50%;
-    display: flex;
-    justify-content: space-between;
-  }
-  
+
   .list-container li {
-    list-style: none;
-  }
-  
-  .list-container li a {
-    color: #f7a11b;
-    text-decoration: none;
-    font-size: small;
-    font-weight: 600;
-    line-height: 1.5;
-    text-transform: uppercase;
+    margin: 20px 0;
   }
 
-  .nav-container a.active {
-    color: white !important;
-    text-decoration: underline !important;
+  .hamburger {
+    display: flex;
   }
-  
-
-  
+  .list-container.in {
+    transform: translate3d(0, 0, 0);
+  }
+  .list-container li button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+}

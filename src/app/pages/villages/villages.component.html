@@ -8,13 +8,11 @@
   />
 </div>
 <section>
-  <div class="divider">
-    <img src="assets/images/divider.png" width="30%" height="20px" alt="" />
-  </div>
-  <h1 class="content-head">VILLAGES</h1>
-  <div class="divider">
-    <img src="assets/images/divider.png" width="30%" height="20px" alt="" />
-  </div>
+  <app-content-header
+    [title]="'VILLAGES'"
+    [width]="'30%'"
+    [height]="'20px'"
+  ></app-content-header>
 
   <div class="map-container">
     <div class="text-content">
@@ -45,13 +43,11 @@
     </div>
     <img src="assets/images/villages_map.jpg" width="600" height="600" alt="" />
   </div>
-  <div class="divider" style="margin-top: 60px">
-    <img src="assets/images/divider.png" width="50%" height="20px" alt="" />
-  </div>
-  <h1 class="content-head">ALL VILLAGES WITH THEIR CHARACTERS</h1>
-  <div class="divider" style="margin-bottom: 20px">
-    <img src="assets/images/divider.png" width="50%" height="20px" alt="" />
-  </div>
+  <app-content-header
+    [title]="'All Villages with their Characters'"
+    [width]="'50%'"
+    [height]="'20px'"
+  ></app-content-header>
   <div class="search-container">
     <input
       id="search-village"

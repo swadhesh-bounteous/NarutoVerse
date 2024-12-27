@@ -12,6 +12,7 @@ import { FilterVillagesPipe } from '../../pipes/filter-villages.pipe';
 import { MatInputModule } from '@angular/material/input'; 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SharedModule } from '../../shared/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FormsModule,
     MatInputModule,
     MatFormFieldModule, 
-    MatProgressSpinnerModule, ReactiveFormsModule
+    MatProgressSpinnerModule, ReactiveFormsModule, SharedModule
   ],
   providers: [provideHttpClient()],
   exports: [

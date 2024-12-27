@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import slides, { Slide } from '../../../../data';
 
 @Component({
   selector: 'app-home',
@@ -9,5 +8,5 @@ import slides, { Slide } from '../../../../data';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-   slides:Slide[] = slides;
+
 }

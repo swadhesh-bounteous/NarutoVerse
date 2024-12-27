@@ -1,1 +1,16 @@
-<p>hero-carousel works!</p>
+<swiper-container
+  [slidesPerView]="1"
+  [loop]="true"
+  navigation="true"
+  autoplay-delay="4000"
+  speed="800"
+  keyboard="true"
+  class="mySwiper"
+  space-between="0"
+>
+  <swiper-slide *ngFor="let slide of slides">
+    <div class="image-container">
+      <img [src]="slide.src" [alt]="slide.alt">
+    </div>
+  </swiper-slide>  
+</swiper-container>

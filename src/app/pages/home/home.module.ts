@@ -6,12 +6,14 @@ import { HomeComponent } from './home.component';
 import { HomeContentComponent } from '../../components/home-content/home-content.component';
 import { FooterComponent } from '../../layouts/footer/footer.component';
 import { SharedModule } from '../../shared/shared/shared.module';
+import { HeroCarouselComponent } from '../../components/hero-carousel/hero-carousel.component';
 
 @NgModule({
   declarations: [
     HomeComponent, 
     HomeContentComponent,
-    FooterComponent
+    FooterComponent,
+    HeroCarouselComponent
   ],
   imports: [
     CommonModule,
